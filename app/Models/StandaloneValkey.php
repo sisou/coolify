@@ -308,6 +308,7 @@ class StandaloneValkey extends BaseModel
                 $scheme = $this->enable_ssl ? 'rediss' : 'redis';
                 $port = $this->enable_ssl ? 6380 : 6379;
                 $encodedPass = rawurlencode($this->connectionPassword());
+
                 return "{$scheme}://default:{$encodedPass}@{$this->uuid}:{$port}/0";
             }
         );
@@ -325,6 +326,7 @@ class StandaloneValkey extends BaseModel
                     $serverHost = formatHostForUrl($serverIp);
                     $scheme = $this->enable_ssl ? 'rediss' : 'redis';
                     $encodedPass = rawurlencode($this->connectionPassword());
+
                     return "{$scheme}://default:{$encodedPass}@{$serverHost}:{$this->public_port}/0";
                 }
 

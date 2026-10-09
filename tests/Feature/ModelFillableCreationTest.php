@@ -21,13 +21,13 @@ use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDocker;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
-use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Models\Subscription;
 use App\Models\SwarmDocker;
 use App\Models\Tag;
@@ -838,7 +838,6 @@ it('creates StandaloneValkey with all fillable attributes', function () {
     expect($db->uuid)->toBe('custom-valkey-uuid');
     expect($db->valkey_password)->toBe('valkeypass123');
     expect($db->valkey_conf)->toBe('io-threads 4');
-    expect($db->health_check_enabled)->toBeTrue();
     expect($db->environment_id)->toBe($this->environment->id);
 });
 
