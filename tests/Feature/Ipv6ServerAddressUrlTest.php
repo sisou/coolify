@@ -8,6 +8,7 @@ use App\Models\ServiceDatabase;
 use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -84,6 +85,7 @@ describe('public database urls', function () {
         'mongodb' => [StandaloneMongodb::class, ['mongo_initdb_root_username' => 'user', 'mongo_initdb_root_password' => 'pass'], 'mongodb://user:pass@%s:15432/?directConnection=true'],
         'redis' => [StandaloneRedis::class, ['image' => 'redis:5.0'], 'redis://@%s:15432/0'],
         'keydb' => [StandaloneKeydb::class, ['keydb_password' => 'pass'], 'redis://:pass@%s:15432/0'],
+        'valkey' => [StandaloneValkey::class, ['valkey_password' => 'pass'], 'redis://default:pass@%s:15432/0'],
         'dragonfly' => [StandaloneDragonfly::class, ['dragonfly_password' => 'pass'], 'redis://:pass@%s:15432/0'],
         'clickhouse' => [StandaloneClickhouse::class, ['clickhouse_admin_user' => 'user', 'clickhouse_admin_password' => 'pass', 'clickhouse_db' => 'app'], 'clickhouse://user:pass@%s:15432/app'],
     ];

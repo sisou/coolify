@@ -229,4 +229,8 @@ it('authorizes every volume backup form control', function (string $path, array 
         'resources/views/livewire/project/database/keydb/general.blade.php',
         ['/<x-forms\.listbox id="isPublic"[\s\S]*?canGate="update" :canResource="\$database" :options=/'],
     ],
+    'valkey public access control' => [
+        'resources/views/livewire/project/database/valkey/general.blade.php',
+        ['/<x-forms\.listbox id="isPublic"[\s\S]*?canGate="update" :canResource="\$database" :options=/'],
+    ],
 ]);

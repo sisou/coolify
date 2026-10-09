@@ -8,6 +8,7 @@ use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDocker;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -137,6 +138,23 @@ function create_standalone_keydb($environment_id, StandaloneDocker|SwarmDocker $
     $database->uuid = new_public_id();
     $database->name = 'keydb-database-'.$database->uuid;
     $database->keydb_password = Str::password(length: 64, symbols: false);
+    $database->environment_id = $environment_id;
+    $database->destination_id = $destination->id;
+    $database->destination_type = $destination->getMorphClass();
+    if ($otherData) {
+        $database->fill($otherData);
+    }
+    $database->save();
+
+    return $database;
+}
+
+function create_standalone_valkey($environment_id, StandaloneDocker|SwarmDocker $destination, ?array $otherData = null): StandaloneValkey
+{
+    $database = new StandaloneValkey;
+    $database->uuid = new_public_id();
+    $database->name = 'valkey-database-'.$database->uuid;
+    $database->valkey_password = Str::password(length: 64, symbols: false);
     $database->environment_id = $environment_id;
     $database->destination_id = $destination->id;
     $database->destination_type = $destination->getMorphClass();

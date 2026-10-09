@@ -17,6 +17,7 @@ use App\Models\SharedEnvironmentVariable;
 use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -278,6 +279,7 @@ test('all deployable environment-variable resources support secret managers', fu
     StandaloneMongodb::class,
     StandaloneRedis::class,
     StandaloneKeydb::class,
+    StandaloneValkey::class,
     StandaloneDragonfly::class,
     StandaloneClickhouse::class,
     StandaloneSqlite::class,

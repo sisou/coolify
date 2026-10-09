@@ -9,7 +9,9 @@ use App\Livewire\Project\Database\Dragonfly\StatusInfo as DragonflyStatusInfo;
 use App\Livewire\Project\Database\Import as DatabaseImport;
 use App\Livewire\Project\Database\ImportForm as DatabaseImportForm;
 use App\Livewire\Project\Database\Keydb\General as KeydbGeneral;
+use App\Livewire\Project\Database\Valkey\General as ValkeyGeneral;
 use App\Livewire\Project\Database\Keydb\StatusInfo as KeydbStatusInfo;
+use App\Livewire\Project\Database\Valkey\StatusInfo as ValkeyStatusInfo;
 use App\Livewire\Project\Database\Mariadb\General as MariadbGeneral;
 use App\Livewire\Project\Database\Mariadb\StatusInfo as MariadbStatusInfo;
 use App\Livewire\Project\Database\Mongodb\General as MongodbGeneral;
@@ -70,6 +72,7 @@ dataset('database-general-forms-without-broadcasts', [
     MariadbGeneral::class,
     MongodbGeneral::class,
     KeydbGeneral::class,
+    ValkeyGeneral::class,
     DragonflyGeneral::class,
     ClickhouseGeneral::class,
     DatabaseImportForm::class,
@@ -84,6 +87,7 @@ dataset('database-status-info-components', [
     MariadbStatusInfo::class,
     MongodbStatusInfo::class,
     KeydbStatusInfo::class,
+    ValkeyStatusInfo::class,
     DragonflyStatusInfo::class,
     ClickhouseStatusInfo::class,
 ]);
@@ -95,6 +99,7 @@ dataset('display-only-status-components', [
     MariadbStatusInfo::class,
     MongodbStatusInfo::class,
     KeydbStatusInfo::class,
+    ValkeyStatusInfo::class,
     DragonflyStatusInfo::class,
     ClickhouseStatusInfo::class,
     DatabaseImport::class,

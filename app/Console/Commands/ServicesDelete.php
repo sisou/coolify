@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -155,6 +156,13 @@ class ServicesDelete extends Command
             $key = "keydb_{$db->id}";
             $allDatabases->put($key, $db);
             $databaseOptions->put($key, "{$db->name} (KeyDB)");
+        }
+
+        // Add Valkey databases
+        foreach (StandaloneValkey::all() as $db) {
+            $key = "valkey_{$db->id}";
+            $allDatabases->put($key, $db);
+            $databaseOptions->put($key, "{$db->name} (Valkey)");
         }
 
         // Add Dragonfly databases

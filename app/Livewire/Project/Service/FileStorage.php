@@ -11,6 +11,7 @@ use App\Models\ServiceDatabase;
 use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -29,7 +30,7 @@ class FileStorage extends Component
 
     public LocalFileVolume $fileStorage;
 
-    public ServiceApplication|StandaloneRedis|StandalonePostgresql|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite|ServiceDatabase|Application $resource;
+    public ServiceApplication|StandaloneRedis|StandalonePostgresql|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneValkey|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite|ServiceDatabase|Application $resource;
 
     public string $fs_path;
 

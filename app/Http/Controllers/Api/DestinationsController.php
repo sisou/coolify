@@ -403,6 +403,7 @@ class DestinationsController extends Controller
                 || (method_exists($destination, 'mongodbs') && $destination->mongodbs()->exists())
                 || (method_exists($destination, 'redis') && $destination->redis()->exists())
                 || (method_exists($destination, 'keydbs') && $destination->keydbs()->exists())
+                || (method_exists($destination, 'valkeys') && $destination->valkeys()->exists())
                 || (method_exists($destination, 'dragonflies') && $destination->dragonflies()->exists())
                 || (method_exists($destination, 'clickhouses') && $destination->clickhouses()->exists())
                 || (method_exists($destination, 'sqlites') && $destination->sqlites()->exists())

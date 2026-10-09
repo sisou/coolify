@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -30,6 +31,7 @@ describe('mass assignment protection', function () {
             StandaloneMariadb::class,
             StandaloneMongodb::class,
             StandaloneKeydb::class,
+            StandaloneValkey::class,
             StandaloneDragonfly::class,
             StandaloneClickhouse::class,
             StandaloneSqlite::class,
@@ -139,6 +141,7 @@ describe('mass assignment protection', function () {
             StandaloneMariadb::class,
             StandaloneMongodb::class,
             StandaloneKeydb::class,
+            StandaloneValkey::class,
             StandaloneDragonfly::class,
             StandaloneClickhouse::class,
             StandaloneSqlite::class,
@@ -181,6 +184,7 @@ describe('mass assignment protection', function () {
             StandaloneMariadb::class,
             StandaloneMongodb::class,
             StandaloneKeydb::class,
+            StandaloneValkey::class,
             StandaloneDragonfly::class,
             StandaloneClickhouse::class,
         ];
@@ -200,6 +204,7 @@ describe('mass assignment protection', function () {
             StandaloneMongodb::class,
             StandaloneRedis::class,
             StandaloneKeydb::class,
+            StandaloneValkey::class,
             StandaloneDragonfly::class,
         ];
 

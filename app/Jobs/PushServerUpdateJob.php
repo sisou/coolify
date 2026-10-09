@@ -22,6 +22,7 @@ use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDocker;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -543,6 +544,7 @@ class PushServerUpdateJob implements ShouldBeEncrypted, ShouldQueue, Silenced
             StandaloneMysql::class,
             StandaloneMariadb::class,
             StandaloneKeydb::class,
+            StandaloneValkey::class,
             StandaloneDragonfly::class,
             StandaloneClickhouse::class,
             StandaloneSqlite::class,

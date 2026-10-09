@@ -16,6 +16,7 @@ use App\Models\Service;
 use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -38,7 +39,7 @@ class DeleteResourceJob implements ShouldBeEncrypted, ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public function __construct(
-        public Application|ApplicationPreview|Service|StandalonePostgresql|StandaloneRedis|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite $resource,
+        public Application|ApplicationPreview|Service|StandalonePostgresql|StandaloneRedis|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneValkey|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite $resource,
         public bool $deleteVolumes = true,
         public bool $deleteConnectedNetworks = true,
         public bool $deleteConfigurations = true,
@@ -76,6 +77,7 @@ class DeleteResourceJob implements ShouldBeEncrypted, ShouldQueue
                 case 'standalone-mysql':
                 case 'standalone-mariadb':
                 case 'standalone-keydb':
+                case 'standalone-valkey':
                 case 'standalone-dragonfly':
                 case 'standalone-clickhouse':
                 case 'standalone-sqlite':
@@ -167,6 +169,7 @@ class DeleteResourceJob implements ShouldBeEncrypted, ShouldQueue
             || $this->resource instanceof StandaloneMysql
             || $this->resource instanceof StandaloneMariadb
             || $this->resource instanceof StandaloneKeydb
+            || $this->resource instanceof StandaloneValkey
             || $this->resource instanceof StandaloneDragonfly
             || $this->resource instanceof StandaloneClickhouse
             || $this->resource instanceof StandaloneSqlite;

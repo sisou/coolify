@@ -16,6 +16,7 @@ use App\Models\ServiceDatabase;
 use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -135,6 +136,15 @@ class CleanupStuckedResources extends Command
             }
         } catch (\Throwable $e) {
             echo "Error in cleaning stuck keydb: {$e->getMessage()}\n";
+        }
+        try {
+            $valkeys = StandaloneValkey::withTrashed()->whereNotNull('deleted_at')->lazyById();
+            foreach ($valkeys as $valkey) {
+                echo "Deleting stuck valkey: {$valkey->name}\n";
+                DeleteResourceJob::dispatch($valkey);
+            }
+        } catch (\Throwable $e) {
+            echo "Error in cleaning stuck valkey: {$e->getMessage()}\n";
         }
         try {
             $dragonflies = StandaloneDragonfly::withTrashed()->whereNotNull('deleted_at')->lazyById();

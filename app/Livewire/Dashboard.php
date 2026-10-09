@@ -29,6 +29,7 @@ class Dashboard extends Component
                 'postgresqls',
                 'redis',
                 'keydbs',
+                'valkeys',
                 'dragonflies',
                 'clickhouses',
                 'mongodbs',

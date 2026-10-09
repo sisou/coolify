@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Actions\Database\StartClickhouse;
 use App\Actions\Database\StartDragonfly;
 use App\Actions\Database\StartKeydb;
+use App\Actions\Database\StartValkey;
 use App\Actions\Database\StartMariadb;
 use App\Actions\Database\StartMongodb;
 use App\Actions\Database\StartMysql;
@@ -18,6 +19,7 @@ use App\Exceptions\RemoteSecretException;
 use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -123,6 +125,7 @@ class DatabaseStartJob implements ShouldBeEncrypted, ShouldQueue
             StandaloneMysql::class => StartMysql::run($database, $activity),
             StandaloneMariadb::class => StartMariadb::run($database, $activity),
             StandaloneKeydb::class => StartKeydb::run($database, $activity),
+            StandaloneValkey::class => StartValkey::run($database, $activity),
             StandaloneDragonfly::class => StartDragonfly::run($database, $activity),
             StandaloneClickhouse::class => StartClickhouse::run($database, $activity),
             StandaloneSqlite::class => StartSqlite::run($database, $activity),

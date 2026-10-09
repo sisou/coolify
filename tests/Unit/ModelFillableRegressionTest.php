@@ -22,6 +22,7 @@ use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDocker;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -72,6 +73,7 @@ it('keeps required mass-assignment attributes fillable for internal create flows
     [StandaloneMongodb::class, ['uuid', 'destination_type', 'destination_id', 'environment_id']],
     [StandaloneRedis::class, ['uuid', 'destination_type', 'destination_id', 'environment_id']],
     [StandaloneKeydb::class, ['uuid', 'destination_type', 'destination_id', 'environment_id']],
+    [StandaloneValkey::class, ['uuid', 'destination_type', 'destination_id', 'environment_id']],
     [StandaloneDragonfly::class, ['uuid', 'destination_type', 'destination_id', 'environment_id']],
     [StandaloneClickhouse::class, ['uuid', 'destination_type', 'destination_id', 'environment_id']],
     [StandaloneSqlite::class, ['uuid', 'destination_type', 'destination_id', 'environment_id']],

@@ -407,6 +407,10 @@
                                 docs: 'https://docs.keydb.dev/',
                                 website: 'https://keydb.dev/'
                             },
+                            valkey: {
+                                docs: 'https://valkey.io/docs/',
+                                website: 'https://valkey.io/'
+                            },
                             dragonfly: {
                                 docs: 'https://www.dragonflydb.io/docs',
                                 website: 'https://www.dragonflydb.io/'

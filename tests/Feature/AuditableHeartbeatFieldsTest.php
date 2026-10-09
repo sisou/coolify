@@ -9,6 +9,7 @@ use App\Models\Server;
 use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -54,6 +55,7 @@ function createAuditedResourceForHeartbeatTest(string $model, Environment $envir
         StandaloneMongodb::class => ['mongo_initdb_root_password' => 'review-fix-e-password'],
         StandaloneRedis::class => [],
         StandaloneKeydb::class => ['keydb_password' => 'review-fix-e-password'],
+        StandaloneValkey::class => ['valkey_password' => 'review-fix-e-password'],
         StandaloneDragonfly::class => ['dragonfly_password' => 'review-fix-e-password'],
         StandaloneClickhouse::class => ['clickhouse_admin_password' => 'review-fix-e-password'],
         StandaloneSqlite::class => [],
@@ -94,6 +96,7 @@ test('container heartbeat and restart tracking writes are not audited as user ch
     StandaloneMongodb::class,
     StandaloneRedis::class,
     StandaloneKeydb::class,
+    StandaloneValkey::class,
     StandaloneDragonfly::class,
     StandaloneClickhouse::class,
     StandaloneSqlite::class,

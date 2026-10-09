@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -27,6 +28,7 @@ class ResourceCreatePolicy
         StandaloneMysql::class,
         StandaloneMariadb::class,
         StandaloneKeydb::class,
+        StandaloneValkey::class,
         StandaloneDragonfly::class,
         StandaloneClickhouse::class,
         StandaloneSqlite::class,

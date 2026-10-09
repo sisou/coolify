@@ -70,6 +70,7 @@ class GetInfrastructureOverview extends Tool
                 'mysqls',
                 'mariadbs',
                 'keydbs',
+                'valkeys',
                 'dragonflies',
                 'clickhouses',
                 'sqlites',
@@ -91,6 +92,7 @@ class GetInfrastructureOverview extends Tool
                 + $project->mysqls_count
                 + $project->mariadbs_count
                 + $project->keydbs_count
+                + $project->valkeys_count
                 + $project->dragonflies_count
                 + $project->clickhouses_count
                 + $project->sqlites_count

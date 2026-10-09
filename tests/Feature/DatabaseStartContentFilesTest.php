@@ -2,6 +2,7 @@
 
 use App\Actions\Database\StartDragonfly;
 use App\Actions\Database\StartKeydb;
+use App\Actions\Database\StartValkey;
 use App\Actions\Database\StartMariadb;
 use App\Actions\Database\StartMongodb;
 use App\Actions\Database\StartMysql;
@@ -69,6 +70,7 @@ dataset('ssl-database-start-actions-with-certificate-files', [
     'mongodb' => ['create_standalone_mongodb', StartMongodb::class, ['server.pem']],
     'redis' => ['create_standalone_redis', StartRedis::class, ['server.crt', 'server.key']],
     'keydb' => ['create_standalone_keydb', StartKeydb::class, ['server.crt', 'server.key']],
+    'valkey' => ['create_standalone_valkey', StartValkey::class, ['server.crt', 'server.key']],
     'dragonfly' => ['create_standalone_dragonfly', StartDragonfly::class, ['server.crt', 'server.key']],
 ]);
 

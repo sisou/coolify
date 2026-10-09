@@ -5,6 +5,7 @@ use App\Actions\Database\RestartDatabase;
 use App\Actions\Database\StartDatabase;
 use App\Actions\Database\StartDragonfly;
 use App\Actions\Database\StartKeydb;
+use App\Actions\Database\StartValkey;
 use App\Actions\Database\StartMariadb;
 use App\Actions\Database\StartMongodb;
 use App\Actions\Database\StartMysql;
@@ -24,6 +25,7 @@ use App\Models\SslCertificate;
 use App\Models\StandaloneDocker;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -110,6 +112,7 @@ dataset('ssl database start actions', [
     'mongodb' => [StartMongodb::class, StandaloneMongodb::class],
     'redis' => [StartRedis::class, StandaloneRedis::class],
     'keydb' => [StartKeydb::class, StandaloneKeydb::class],
+    'valkey' => [StartValkey::class, StandaloneValkey::class],
     'dragonfly' => [StartDragonfly::class, StandaloneDragonfly::class],
 ]);
 

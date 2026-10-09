@@ -13,6 +13,7 @@ use App\Models\Service;
 use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -48,6 +49,7 @@ class CleanupNames extends Command
         'StandaloneMongodb' => StandaloneMongodb::class,
         'StandaloneMariadb' => StandaloneMariadb::class,
         'StandaloneKeydb' => StandaloneKeydb::class,
+        'StandaloneValkey' => StandaloneValkey::class,
         'StandaloneDragonfly' => StandaloneDragonfly::class,
         'StandaloneClickhouse' => StandaloneClickhouse::class,
         'StandaloneSqlite' => StandaloneSqlite::class,

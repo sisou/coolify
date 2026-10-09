@@ -22,6 +22,7 @@ use App\Models\SslCertificate;
 use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -276,6 +277,16 @@ describe('Sensitive model fields are hidden by default', function () {
 
         expect($hidden)->toContain(
             'keydb_password',
+            'internal_db_url',
+            'external_db_url',
+        );
+    });
+
+    test('StandaloneValkey hides password and db urls', function () {
+        $hidden = (new StandaloneValkey)->getHidden();
+
+        expect($hidden)->toContain(
+            'valkey_password',
             'internal_db_url',
             'external_db_url',
         );

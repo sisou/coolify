@@ -31,6 +31,7 @@ use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDocker;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
+use App\Models\StandaloneValkey;
 use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
@@ -103,6 +104,7 @@ class AuthServiceProvider extends ServiceProvider
         StandaloneMongodb::class => DatabasePolicy::class,
         StandaloneRedis::class => DatabasePolicy::class,
         StandaloneKeydb::class => DatabasePolicy::class,
+        StandaloneValkey::class => DatabasePolicy::class,
         StandaloneDragonfly::class => DatabasePolicy::class,
         StandaloneClickhouse::class => DatabasePolicy::class,
         StandaloneSqlite::class => DatabasePolicy::class,

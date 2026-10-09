@@ -1431,6 +1431,7 @@ $siteAddress {
         $mysqls = StandaloneMysql::where($destinationCondition)->get();
         $mariadbs = StandaloneMariadb::where($destinationCondition)->get();
         $keydbs = StandaloneKeydb::where($destinationCondition)->get();
+        $valkeys = StandaloneValkey::where($destinationCondition)->get();
         $dragonflies = StandaloneDragonfly::where($destinationCondition)->get();
         $clickhouses = StandaloneClickhouse::where($destinationCondition)->get();
         $sqlites = StandaloneSqlite::where($destinationCondition)->get();
@@ -1441,6 +1442,7 @@ $siteAddress {
             ->concat($mysqls)
             ->concat($mariadbs)
             ->concat($keydbs)
+            ->concat($valkeys)
             ->concat($dragonflies)
             ->concat($clickhouses)
             ->concat($sqlites)

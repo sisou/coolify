@@ -237,6 +237,12 @@ class Select extends Component
                 'logoDark' => asset('svgs/resources/keydb-dark.svg'),
             ],
             [
+                'id' => 'valkey',
+                'name' => 'Valkey',
+                'description' => 'An open source, Redis-compatible in-memory key-value store from the Linux Foundation.',
+                'logo' => asset('svgs/resources/valkey.svg'),
+            ],
+            [
                 'id' => 'dragonfly',
                 'name' => 'Dragonfly',
                 'description' => 'An in-memory datastore compatible with Redis and Memcached.',
@@ -373,6 +379,7 @@ class Select extends Component
             case 'mariadb':
             case 'redis':
             case 'keydb':
+            case 'valkey':
             case 'dragonfly':
             case 'clickhouse':
             case 'mongodb':

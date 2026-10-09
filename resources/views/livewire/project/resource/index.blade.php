@@ -366,6 +366,7 @@
                 ...@js($mysqlsJs),
                 ...@js($mariadbsJs),
                 ...@js($keydbsJs),
+                ...@js($valkeysJs),
                 ...@js($dragonfliesJs),
                 ...@js($clickhousesJs),
                 ...@js($sqlitesJs),
