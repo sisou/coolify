@@ -13,6 +13,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Models\Team;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -43,6 +44,13 @@ test('StandaloneDocker::databases() includes attached keydb', function () {
     expect($this->destination->attachedTo())->toBeTrue();
 });
 
+test('StandaloneDocker::databases() includes attached valkey', function () {
+    attachDb(StandaloneValkey::class, ['valkey_password' => 'pw'], $this->destination, $this->environment);
+
+    expect($this->destination->databases()->count())->toBe(1);
+    expect($this->destination->attachedTo())->toBeTrue();
+});
+
 test('StandaloneDocker::databases() includes attached dragonfly', function () {
     attachDb(StandaloneDragonfly::class, ['dragonfly_password' => 'pw'], $this->destination, $this->environment);
 
@@ -64,17 +72,18 @@ test('StandaloneDocker::databases() includes attached sqlite', function () {
     expect($this->destination->attachedTo())->toBeTrue();
 });
 
-test('StandaloneDocker::databases() includes all 9 standalone database types', function () {
+test('StandaloneDocker::databases() includes all 10 standalone database types', function () {
     attachDb(StandalonePostgresql::class, ['postgres_password' => 'pw'], $this->destination, $this->environment);
     attachDb(StandaloneRedis::class, ['redis_password' => 'pw'], $this->destination, $this->environment);
     attachDb(StandaloneMongodb::class, ['mongo_initdb_root_password' => 'pw'], $this->destination, $this->environment);
     attachDb(StandaloneMysql::class, ['mysql_root_password' => 'pw', 'mysql_password' => 'pw'], $this->destination, $this->environment);
     attachDb(StandaloneMariadb::class, ['mariadb_root_password' => 'pw', 'mariadb_password' => 'pw'], $this->destination, $this->environment);
     attachDb(StandaloneKeydb::class, ['keydb_password' => 'pw'], $this->destination, $this->environment);
+    attachDb(StandaloneValkey::class, ['valkey_password' => 'pw'], $this->destination, $this->environment);
     attachDb(StandaloneDragonfly::class, ['dragonfly_password' => 'pw'], $this->destination, $this->environment);
     attachDb(StandaloneClickhouse::class, ['clickhouse_admin_password' => 'pw'], $this->destination, $this->environment);
     attachDb(StandaloneSqlite::class, [], $this->destination, $this->environment);
 
-    expect($this->destination->databases()->count())->toBe(9);
+    expect($this->destination->databases()->count())->toBe(10);
     expect($this->destination->attachedTo())->toBeTrue();
 });

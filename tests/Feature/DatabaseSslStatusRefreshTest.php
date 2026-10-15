@@ -20,6 +20,8 @@ use App\Livewire\Project\Database\Postgresql\General as PostgresqlGeneral;
 use App\Livewire\Project\Database\Postgresql\StatusInfo as PostgresqlStatusInfo;
 use App\Livewire\Project\Database\Redis\General as RedisGeneral;
 use App\Livewire\Project\Database\Redis\StatusInfo as RedisStatusInfo;
+use App\Livewire\Project\Database\Valkey\General as ValkeyGeneral;
+use App\Livewire\Project\Database\Valkey\StatusInfo as ValkeyStatusInfo;
 use App\Livewire\Project\Service\Configuration as ServiceConfiguration;
 use App\Livewire\Project\Service\ResourceCard as ServiceResourceCard;
 use App\Livewire\Server\Sentinel;
@@ -70,6 +72,7 @@ dataset('database-general-forms-without-broadcasts', [
     MariadbGeneral::class,
     MongodbGeneral::class,
     KeydbGeneral::class,
+    ValkeyGeneral::class,
     DragonflyGeneral::class,
     ClickhouseGeneral::class,
     DatabaseImportForm::class,
@@ -84,6 +87,7 @@ dataset('database-status-info-components', [
     MariadbStatusInfo::class,
     MongodbStatusInfo::class,
     KeydbStatusInfo::class,
+    ValkeyStatusInfo::class,
     DragonflyStatusInfo::class,
     ClickhouseStatusInfo::class,
 ]);
@@ -95,6 +99,7 @@ dataset('display-only-status-components', [
     MariadbStatusInfo::class,
     MongodbStatusInfo::class,
     KeydbStatusInfo::class,
+    ValkeyStatusInfo::class,
     DragonflyStatusInfo::class,
     ClickhouseStatusInfo::class,
     DatabaseImport::class,

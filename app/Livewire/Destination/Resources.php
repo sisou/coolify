@@ -15,6 +15,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -60,6 +61,7 @@ class Resources extends Component
             $this->destination->mysqls,
             $this->destination->mariadbs,
             $this->destination->keydbs,
+            $this->destination->valkeys,
             $this->destination->dragonflies,
             $this->destination->clickhouses,
             $this->destination->sqlites,
@@ -67,7 +69,7 @@ class Resources extends Component
     }
 
     /**
-     * @param  array<int, iterable<Application|Service|StandalonePostgresql|StandaloneRedis|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite>>  $groups
+     * @param  array<int, iterable<Application|Service|StandalonePostgresql|StandaloneRedis|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneValkey|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite>>  $groups
      * @return array<int, array{uuid:string,type:string,name:string,project:string|null,environment:string|null,url:string|null,search:string}>
      */
     protected function collectResources(array $groups): array
@@ -83,7 +85,7 @@ class Resources extends Component
     }
 
     /**
-     * @param  Application|Service|StandalonePostgresql|StandaloneRedis|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite  $resource
+     * @param  Application|Service|StandalonePostgresql|StandaloneRedis|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneValkey|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite  $resource
      * @return array{uuid:string,type:string,name:string,project:string|null,environment:string|null,url:string|null,search:string}
      */
     protected function resourceRow(BaseModel $resource): array

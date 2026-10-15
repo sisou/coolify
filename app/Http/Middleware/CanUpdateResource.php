@@ -18,6 +18,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -36,6 +37,7 @@ class CanUpdateResource
             StandaloneMariadb::class,
             StandaloneRedis::class,
             StandaloneKeydb::class,
+            StandaloneValkey::class,
             StandaloneDragonfly::class,
             StandaloneClickhouse::class,
             StandaloneMongodb::class,

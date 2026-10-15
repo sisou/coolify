@@ -243,6 +243,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/databases/clickhouse', [DatabasesController::class, 'create_database_clickhouse'])->middleware(['api.ability:write']);
         Route::post('/databases/dragonfly', [DatabasesController::class, 'create_database_dragonfly'])->middleware(['api.ability:write']);
         Route::post('/databases/keydb', [DatabasesController::class, 'create_database_keydb'])->middleware(['api.ability:write']);
+        Route::post('/databases/valkey', [DatabasesController::class, 'create_database_valkey'])->middleware(['api.ability:write']);
         Route::post('/deploy', [DeployController::class, 'deploy'])->middleware(['api.ability:deploy']);
         Route::get('/deployments/{uuid}', [DeployController::class, 'deployment_by_uuid'])->middleware(['api.ability:read']);
     });

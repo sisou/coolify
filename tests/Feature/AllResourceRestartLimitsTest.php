@@ -13,6 +13,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Traits\HasRestartLimit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
@@ -50,6 +51,7 @@ it('limits restarts only for applications', function () {
         StandaloneMysql::class,
         StandaloneMariadb::class,
         StandaloneKeydb::class,
+        StandaloneValkey::class,
         StandaloneDragonfly::class,
         StandaloneClickhouse::class,
         StandaloneSqlite::class,
@@ -67,6 +69,7 @@ it('limits restarts only for applications', function () {
         'standalone_mysqls',
         'standalone_mariadbs',
         'standalone_keydbs',
+        'standalone_valkeys',
         'standalone_dragonflies',
         'standalone_clickhouses',
         'standalone_sqlites',

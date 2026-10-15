@@ -3,6 +3,7 @@
 use App\Actions\Database\StartDragonfly;
 use App\Actions\Database\StartKeydb;
 use App\Actions\Database\StartRedis;
+use App\Actions\Database\StartValkey;
 use App\Models\Environment;
 use App\Models\InstanceSettings;
 use App\Models\Project;
@@ -10,6 +11,7 @@ use App\Models\Server;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
 use App\Models\StandaloneRedis;
+use App\Models\StandaloneValkey;
 use App\Models\Team;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -76,6 +78,23 @@ test('keydb start command keeps dollars literal for exact password variables', f
         ->toBe("keydb-server --requirepass 'p4\$\$\$\$word' --appendonly yes");
 });
 
+test('valkey start command keeps dollars literal for exact password variables', function () {
+    $valkey = StandaloneValkey::forceCreate([
+        'uuid' => 'valkey-password-test',
+        'name' => 'Valkey password test',
+        'image' => 'valkey/valkey:9',
+        'valkey_password' => 'column-password',
+        ...$this->databaseAttributes,
+    ]);
+    $valkey->runtime_environment_variables()->create([
+        'key' => 'REDIS_PASSWORD',
+        'value' => 'p4$$word',
+    ]);
+
+    expect(redisFamilyStartCommand(new StartValkey, $valkey))
+        ->toBe("valkey-server --requirepass 'p4\$\$\$\$word' --appendonly yes");
+});
+
 test('dragonfly start command keeps dollars literal for exact password variables', function () {
     $dragonfly = StandaloneDragonfly::forceCreate([
         'uuid' => 'dragonfly-password-test',
@@ -93,9 +112,11 @@ test('dragonfly start command keeps dollars literal for exact password variables
         ->toBe("dragonfly --requirepass 'p4\$\$\$\$word'");
 });
 
-test('keydb and dragonfly healthchecks use the compose-escaped password', function () {
+test('keydb, valkey and dragonfly healthchecks use the compose-escaped password', function () {
     expect(file_get_contents(__DIR__.'/../../app/Actions/Database/StartKeydb.php'))
         ->toContain("'CMD', 'keydb-cli', '--pass', \$this->resolvedRedisPassword, 'ping'");
+    expect(file_get_contents(__DIR__.'/../../app/Actions/Database/StartValkey.php'))
+        ->toContain("'CMD', 'valkey-cli', '--pass', \$this->resolvedRedisPassword, 'ping'");
     expect(file_get_contents(__DIR__.'/../../app/Actions/Database/StartDragonfly.php'))
         ->toContain("'CMD', 'redis-cli', '-a', \$this->resolvedRedisPassword, 'ping'");
 });

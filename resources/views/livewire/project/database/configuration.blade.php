@@ -24,6 +24,8 @@
                         <livewire:project.database.mariadb.general :database="$database" />
                     @elseif ($database->type() === 'standalone-keydb')
                         <livewire:project.database.keydb.general :database="$database" />
+                    @elseif ($database->type() === 'standalone-valkey')
+                        <livewire:project.database.valkey.general :database="$database" />
                     @elseif ($database->type() === 'standalone-dragonfly')
                         <livewire:project.database.dragonfly.general :database="$database" />
                     @elseif ($database->type() === 'standalone-clickhouse')

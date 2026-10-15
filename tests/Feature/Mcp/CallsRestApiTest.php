@@ -34,7 +34,7 @@ test('REST bridge removes nested database credentials even with sensitive read a
     ]);
 })->with([
     'internal_db_url', 'external_db_url', 'password',
-    'postgres_password', 'dragonfly_password', 'keydb_password',
+    'postgres_password', 'dragonfly_password', 'keydb_password', 'valkey_password',
     'redis_password', 'mongo_initdb_root_password',
     'mariadb_password', 'mariadb_root_password',
     'mysql_password', 'mysql_root_password', 'clickhouse_admin_password',

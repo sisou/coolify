@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
 use App\Models\StandaloneRedis;
+use App\Models\StandaloneValkey;
 use App\Support\RemoteSecretReferences;
 use App\Support\RemoteSecretValueFormatter;
 use Illuminate\Database\Eloquent\Model;
@@ -104,7 +105,7 @@ trait HasSecretManager
         }
 
         if ($environmentVariable->key === 'REDIS_PASSWORD' && $this->useExactEscaping($environmentVariable)
-            && ($this instanceof StandaloneRedis || $this instanceof StandaloneKeydb || $this instanceof StandaloneDragonfly)) {
+            && ($this instanceof StandaloneRedis || $this instanceof StandaloneKeydb || $this instanceof StandaloneValkey || $this instanceof StandaloneDragonfly)) {
             return escapeDollarSign($value);
         }
 
@@ -199,7 +200,7 @@ trait HasSecretManager
         }
 
         $isRedisPassword = $environmentVariable->key === 'REDIS_PASSWORD'
-            && ($this instanceof StandaloneRedis || $this instanceof StandaloneKeydb || $this instanceof StandaloneDragonfly);
+            && ($this instanceof StandaloneRedis || $this instanceof StandaloneKeydb || $this instanceof StandaloneValkey || $this instanceof StandaloneDragonfly);
 
         if ($isRedisPassword && str_contains($value, '$')) {
             return true;

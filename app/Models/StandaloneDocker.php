@@ -6,6 +6,7 @@ use App\Support\ValidationPatterns;
 use App\Traits\HasSafeStringAttribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use OpenApi\Attributes as OA;
 
 #[OA\Schema(
@@ -107,6 +108,11 @@ class StandaloneDocker extends BaseModel
         return $this->morphMany(StandaloneKeydb::class, 'destination');
     }
 
+    public function valkeys(): MorphMany
+    {
+        return $this->morphMany(StandaloneValkey::class, 'destination');
+    }
+
     public function dragonflies()
     {
         return $this->morphMany(StandaloneDragonfly::class, 'destination');
@@ -172,11 +178,12 @@ class StandaloneDocker extends BaseModel
         $mysqls = $this->mysqls;
         $mariadbs = $this->mariadbs;
         $keydbs = $this->keydbs;
+        $valkeys = $this->valkeys;
         $dragonflies = $this->dragonflies;
         $clickhouses = $this->clickhouses;
         $sqlites = $this->sqlites;
 
-        return $postgresqls->concat($redis)->concat($mongodbs)->concat($mysqls)->concat($mariadbs)->concat($keydbs)->concat($dragonflies)->concat($clickhouses)->concat($sqlites);
+        return $postgresqls->concat($redis)->concat($mongodbs)->concat($mysqls)->concat($mariadbs)->concat($keydbs)->concat($valkeys)->concat($dragonflies)->concat($clickhouses)->concat($sqlites);
     }
 
     public function attachedTo()

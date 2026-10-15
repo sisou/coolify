@@ -9,6 +9,7 @@ use App\Models\StandaloneDocker;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
 use App\Models\StandaloneRedis;
+use App\Models\StandaloneValkey;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -39,10 +40,10 @@ function createRedisFamilyDatabasesForQueryCount(int $environmentId, StandaloneD
 
         create_standalone_redis($environmentId, $destination, $public + ['image' => 'redis:7.2']);
 
-        foreach (['create_standalone_keydb', 'create_standalone_dragonfly'] as $create) {
+        foreach (['create_standalone_keydb' => 'REDIS_PASSWORD', 'create_standalone_dragonfly' => 'REDIS_PASSWORD', 'create_standalone_valkey' => 'REDIS_PASSWORD'] as $create => $passwordKey) {
             $database = $create($environmentId, $destination, $public);
             EnvironmentVariable::create([
-                'key' => 'REDIS_PASSWORD',
+                'key' => $passwordKey,
                 'value' => "variable-password-{$index}",
                 'resourceable_type' => $database->getMorphClass(),
                 'resourceable_id' => $database->id,
@@ -77,7 +78,7 @@ function countRedisFamilyDatabaseListQueries(string $bearerToken, string $uri = 
     return [$queries, $response->json()];
 }
 
-it('does not query environment variables per Redis, KeyDB and Dragonfly database in the database list', function () {
+it('does not query environment variables per Redis, KeyDB, Valkey and Dragonfly database in the database list', function () {
     createRedisFamilyDatabasesForQueryCount($this->environment->id, $this->destination, 1);
     // The first request also authenticates the token; measure warm requests only.
     countRedisFamilyDatabaseListQueries($this->bearerToken);
@@ -86,10 +87,10 @@ it('does not query environment variables per Redis, KeyDB and Dragonfly database
     createRedisFamilyDatabasesForQueryCount($this->environment->id, $this->destination, 4);
     [$queriesForFiveEach, $databases] = countRedisFamilyDatabaseListQueries($this->bearerToken);
 
-    expect($databases)->toHaveCount(15)
+    expect($databases)->toHaveCount(20)
         ->and($queriesForFiveEach)->toBe($queriesForOneEach);
 
-    $modelsByUuid = collect([StandaloneRedis::class, StandaloneKeydb::class, StandaloneDragonfly::class])
+    $modelsByUuid = collect([StandaloneRedis::class, StandaloneKeydb::class, StandaloneValkey::class, StandaloneDragonfly::class])
         ->flatMap(fn (string $model) => $model::query()->get())
         ->keyBy('uuid');
 

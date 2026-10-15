@@ -107,6 +107,7 @@ function resource_logo(Model $resource): ?array
         'mongodb' => $resourceLogo('mongodb'),
         'redis' => $resourceLogo('redis'),
         'keydb' => $resourceLogo('keydb', true),
+        'valkey' => $resourceLogo('valkey'),
         'dragonfly' => $resourceLogo('dragonfly', true),
         'clickhouse' => $resourceLogo('clickhouse'),
         'sqlite' => $resourceLogo('sqlite'),

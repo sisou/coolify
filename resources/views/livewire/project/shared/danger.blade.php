@@ -17,7 +17,7 @@
     @endif
     <x-application.settings-section id="danger-zone-section" title="Danger zone"
         helper="Destructive resource actions cannot be undone.">
-        @if (in_array($resource?->type(), ['standalone-redis', 'standalone-keydb', 'standalone-dragonfly']))
+        @if (in_array($resource?->type(), ['standalone-redis', 'standalone-keydb', 'standalone-valkey', 'standalone-dragonfly']))
             <x-danger-zone title="Flush all data" class="mb-4">
                 <p>
                     Permanently remove every key from

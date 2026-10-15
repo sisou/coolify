@@ -47,7 +47,7 @@ it('returns local, CDN, and default logo fallbacks for every service', function 
 it('uses resource tile icons for databases', function () {
     $databases = collect((new Select)->loadServices()['databases'])->keyBy('id');
 
-    foreach (['keydb', 'dragonfly', 'clickhouse'] as $database) {
+    foreach (['keydb', 'valkey', 'dragonfly', 'clickhouse'] as $database) {
         expect($databases[$database]['logo'])->toBe(resource_logo_url($database));
     }
 });

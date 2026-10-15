@@ -26,6 +26,15 @@ test('keydb healthcheck uses CMD exec-form, not a CMD-SHELL string', function ()
     expect($source)->toContain("'CMD', 'keydb-cli'");
 });
 
+// ─── Valkey ───────────────────────────────────────────────────────────────────
+
+test('valkey healthcheck uses CMD exec-form, not a CMD-SHELL string', function () {
+    $source = file_get_contents(__DIR__.'/../../app/Actions/Database/StartValkey.php');
+
+    expect($source)->not->toContain('CMD-SHELL');
+    expect($source)->toContain("'CMD', 'valkey-cli'");
+});
+
 // ─── Dragonfly ────────────────────────────────────────────────────────────────
 
 test('dragonfly healthcheck uses CMD exec-form, not a CMD-SHELL string', function () {

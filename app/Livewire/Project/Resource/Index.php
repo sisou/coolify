@@ -37,6 +37,8 @@ class Index extends Component
 
     protected Collection $keydbs;
 
+    protected Collection $valkeys;
+
     protected Collection $dragonflies;
 
     protected Collection $clickhouses;
@@ -47,7 +49,7 @@ class Index extends Component
 
     public function mount(): void
     {
-        $this->applications = $this->postgresqls = $this->redis = $this->mongodbs = $this->mysqls = $this->mariadbs = $this->keydbs = $this->dragonflies = $this->clickhouses = $this->sqlites = $this->services = collect();
+        $this->applications = $this->postgresqls = $this->redis = $this->mongodbs = $this->mysqls = $this->mariadbs = $this->keydbs = $this->valkeys = $this->dragonflies = $this->clickhouses = $this->sqlites = $this->services = collect();
         $this->parameters = get_route_parameters();
         $project = currentTeam()
             ->projects()
@@ -78,6 +80,7 @@ class Index extends Component
             'mysqls:id,uuid,name,environment_id',
             'mariadbs:id,uuid,name,environment_id',
             'keydbs:id,uuid,name,environment_id',
+            'valkeys:id,uuid,name,environment_id',
             'dragonflies:id,uuid,name,environment_id',
             'clickhouses:id,uuid,name,environment_id',
             'sqlites:id,uuid,name,environment_id',
@@ -94,6 +97,7 @@ class Index extends Component
             'postgresqls',
             'mysqls',
             'keydbs',
+            'valkeys',
             'dragonflies',
             'clickhouses',
             'mariadbs',
@@ -129,6 +133,7 @@ class Index extends Component
             'mysqls' => 'mysqls',
             'mariadbs' => 'mariadbs',
             'keydbs' => 'keydbs',
+            'valkeys' => 'valkeys',
             'dragonflies' => 'dragonflies',
             'clickhouses' => 'clickhouses',
             'sqlites' => 'sqlites',
@@ -176,6 +181,7 @@ class Index extends Component
             'mysqls' => $this->mysqls,
             'mariadbs' => $this->mariadbs,
             'keydbs' => $this->keydbs,
+            'valkeys' => $this->valkeys,
             'dragonflies' => $this->dragonflies,
             'clickhouses' => $this->clickhouses,
             'sqlites' => $this->sqlites,
@@ -187,6 +193,7 @@ class Index extends Component
             'mysqlsJs' => $this->toSearchableArray($this->mysqls, 'database', 'Database'),
             'mariadbsJs' => $this->toSearchableArray($this->mariadbs, 'database', 'Database'),
             'keydbsJs' => $this->toSearchableArray($this->keydbs, 'database', 'Database'),
+            'valkeysJs' => $this->toSearchableArray($this->valkeys, 'database', 'Database'),
             'dragonfliesJs' => $this->toSearchableArray($this->dragonflies, 'database', 'Database'),
             'clickhousesJs' => $this->toSearchableArray($this->clickhouses, 'database', 'Database'),
             'sqlitesJs' => $this->toSearchableArray($this->sqlites, 'database', 'Database'),

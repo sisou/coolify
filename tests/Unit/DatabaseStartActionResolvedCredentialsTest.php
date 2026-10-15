@@ -21,6 +21,11 @@ it('reuses resolved environment credentials in database startup integrations', f
         ['$this->resolvedRedisPassword'],
         ['$this->database->keydb_password, \'ping\'', 'requirepass {$this->database->keydb_password}'],
     ],
+    'valkey' => [
+        'StartValkey',
+        ['$this->resolvedRedisPassword'],
+        ['$this->database->valkey_password, \'ping\'', 'requirepass {$this->database->valkey_password}'],
+    ],
     'mongodb' => [
         'StartMongodb',
         ['$this->resolvedMongoDatabase', '$this->resolvedMongoUsername', '$this->resolvedMongoPassword'],
@@ -55,6 +60,7 @@ it('runs database start commands without persisting them through remote process'
     'StartPostgresql',
     'StartRedis',
     'StartSqlite',
+    'StartValkey',
 ]);
 
 it('queues database starts with identifiers instead of generated commands', function () {
@@ -78,6 +84,7 @@ it('keeps raw secret values separate from compose environment formatting', funct
     'clickhouse' => ['StartClickhouse', ['$this->resolvedClickhouseUser = $composeFileValue;', '$this->resolvedClickhousePassword = $composeFileValue;']],
     'dragonfly' => ['StartDragonfly', ['$this->resolvedRedisPassword = $this->database->formatComposeFileValue($env, $rawValue);', '$this->requirePassArgument()']],
     'keydb' => ['StartKeydb', ['$this->resolvedRedisPassword = $this->database->formatComposeFileValue($env, $rawValue);', '$this->requirePassArgument()']],
+    'valkey' => ['StartValkey', ['$this->resolvedRedisPassword = $this->database->formatComposeFileValue($env, $rawValue);']],
     'mongodb' => ['StartMongodb', ['$this->resolvedMongoUsername = $rawValue;', '$this->resolvedMongoPassword = $rawValue;', '$this->resolvedMongoDatabase = $rawValue;', 'json_encode($this->resolvedMongoPassword']],
     'mysql' => ['StartMysql', ['$this->resolvedMysqlRootPassword = $composeFileValue;']],
     'postgresql' => ['StartPostgresql', ['$this->resolvedPostgresUser = $composeFileValue;', '$this->resolvedPostgresDatabase = $composeFileValue;']],

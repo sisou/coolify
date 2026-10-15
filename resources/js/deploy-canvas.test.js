@@ -167,6 +167,7 @@ test('shows the logo of what a source step creates, like the rest of Coolify', (
     assert.equal(src('database', { engine: 'postgresql' }), '/svgs/resources/postgres.svg');
     assert.equal(src('database', { engine: 'mysql' }), '/svgs/resources/mysql.svg');
     assert.equal(logoOf(node('n', 'database', { engine: 'keydb' })).dark, '/svgs/resources/keydb-dark.svg');
+    assert.equal(src('database', { engine: 'valkey' }), '/svgs/resources/valkey.svg');
     assert.equal(src('git', { mode: 'public', buildPack: 'railpack' }), '/svgs/resources/public-repo.svg');
     assert.equal(src('git', { mode: 'github', buildPack: 'railpack' }), '/svgs/resources/github-app.svg');
     assert.equal(src('git', { mode: 'key', buildPack: 'railpack' }), '/svgs/resources/deploy-key.svg');

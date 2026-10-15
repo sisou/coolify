@@ -11,6 +11,7 @@ use App\Models\StandaloneDocker;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
 use App\Models\StandaloneRedis;
+use App\Models\StandaloneValkey;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -24,7 +25,7 @@ beforeEach(function () {
     $this->withoutDefer();
 });
 
-function createFlushableDatabase(string $model, array $attributes = []): StandaloneRedis|StandaloneKeydb|StandaloneDragonfly
+function createFlushableDatabase(string $model, array $attributes = []): StandaloneRedis|StandaloneKeydb|StandaloneValkey|StandaloneDragonfly
 {
     $team = Team::factory()->create();
     $server = Server::factory()->create([
@@ -68,6 +69,7 @@ it('flushes every key with the engine CLI', function (string $model, array $attr
 })->with([
     'redis' => [StandaloneRedis::class, [], 'redis-cli'],
     'keydb' => [StandaloneKeydb::class, ['keydb_password' => 'secret'], 'keydb-cli'],
+    'valkey' => [StandaloneValkey::class, ['valkey_password' => 'secret'], 'valkey-cli'],
     'dragonfly with tls' => [StandaloneDragonfly::class, ['dragonfly_password' => 'secret', 'enable_ssl' => true], 'redis-cli --tls --cacert /etc/dragonfly/certs/coolify-ca.crt --cert /etc/dragonfly/certs/server.crt --key /etc/dragonfly/certs/server.key'],
 ]);
 
