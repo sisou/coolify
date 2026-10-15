@@ -5,6 +5,7 @@ namespace App\Actions\Database;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
 use App\Models\StandaloneRedis;
+use App\Models\StandaloneValkey;
 use Lorisleiva\Actions\Concerns\AsAction;
 use RuntimeException;
 
@@ -12,9 +13,13 @@ class FlushDatabase
 {
     use AsAction;
 
-    public function handle(StandaloneRedis|StandaloneKeydb|StandaloneDragonfly $database): void
+    public function handle(StandaloneRedis|StandaloneKeydb|StandaloneValkey|StandaloneDragonfly $database): void
     {
-        $cli = $database instanceof StandaloneKeydb ? 'keydb-cli' : 'redis-cli';
+        $cli = match (true) {
+            $database instanceof StandaloneKeydb => 'keydb-cli',
+            $database instanceof StandaloneValkey => 'valkey-cli',
+            default => 'redis-cli',
+        };
         if ($database instanceof StandaloneDragonfly && $database->enable_ssl) {
             $cli .= ' --tls --cacert /etc/dragonfly/certs/coolify-ca.crt --cert /etc/dragonfly/certs/server.crt --key /etc/dragonfly/certs/server.key';
         }

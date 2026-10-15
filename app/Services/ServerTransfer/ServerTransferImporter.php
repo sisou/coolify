@@ -34,6 +34,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Models\SwarmDocker;
 use App\Models\Tag;
 use App\Models\Team;
@@ -56,6 +57,7 @@ class ServerTransferImporter
         'StandaloneMongodb' => StandaloneMongodb::class,
         'StandaloneRedis' => StandaloneRedis::class,
         'StandaloneKeydb' => StandaloneKeydb::class,
+        'StandaloneValkey' => StandaloneValkey::class,
         'StandaloneDragonfly' => StandaloneDragonfly::class,
         'StandaloneClickhouse' => StandaloneClickhouse::class,
         'StandaloneSqlite' => StandaloneSqlite::class,

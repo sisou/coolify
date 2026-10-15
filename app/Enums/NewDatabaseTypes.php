@@ -10,6 +10,7 @@ enum NewDatabaseTypes: string
     case REDIS = 'redis';
     case MARIADB = 'mariadb';
     case KEYDB = 'keydb';
+    case VALKEY = 'valkey';
     case DRAGONFLY = 'dragonfly';
     case CLICKHOUSE = 'clickhouse';
     case SQLITE = 'sqlite';

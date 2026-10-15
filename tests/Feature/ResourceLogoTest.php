@@ -6,6 +6,7 @@ use App\Models\GitlabApp;
 use App\Models\Service;
 use App\Models\StandaloneKeydb;
 use App\Models\StandalonePostgresql;
+use App\Models\StandaloneValkey;
 
 beforeEach(function () {
     config(['cache.default' => 'array']);
@@ -15,7 +16,9 @@ test('databases get the logo of their engine', function () {
     expect(resource_logo(new StandalonePostgresql))
         ->toBe(['src' => resource_logo_url('postgres'), 'dark' => null, 'fallback' => null, 'padded' => false, 'favicon' => null])
         ->and(resource_logo(new StandaloneKeydb))
-        ->toBe(['src' => resource_logo_url('keydb'), 'dark' => resource_logo_url('keydb-dark'), 'fallback' => null, 'padded' => false, 'favicon' => null]);
+        ->toBe(['src' => resource_logo_url('keydb'), 'dark' => resource_logo_url('keydb-dark'), 'fallback' => null, 'padded' => false, 'favicon' => null])
+        ->and(resource_logo(new StandaloneValkey))
+        ->toBe(['src' => resource_logo_url('valkey'), 'dark' => null, 'fallback' => null, 'padded' => false, 'favicon' => null]);
 });
 
 test('applications get the logo of how they are built', function (string $buildPack, ?string $sourceType, string $logo) {

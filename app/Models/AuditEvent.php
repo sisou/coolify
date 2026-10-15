@@ -32,7 +32,7 @@ class AuditEvent extends Model
         'custom_docker_run_options', 'pre_deployment_command', 'post_deployment_command',
         'docker_compose_custom_start_command', 'docker_compose_custom_build_command',
         'custom_nginx_configuration',
-        'postgres_conf', 'mysql_conf', 'mariadb_conf', 'mongo_conf', 'redis_conf', 'keydb_conf',
+        'postgres_conf', 'mysql_conf', 'mariadb_conf', 'mongo_conf', 'redis_conf', 'keydb_conf', 'valkey_conf',
         'internal_db_url', 'external_db_url', 'init_scripts',
         'dockerfile', 'docker_compose', 'docker_compose_raw', 'custom_labels',
         'last_saved_proxy_configuration',

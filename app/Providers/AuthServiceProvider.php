@@ -37,6 +37,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Models\SwarmDocker;
 use App\Models\Tag;
 use App\Models\Team;
@@ -103,6 +104,7 @@ class AuthServiceProvider extends ServiceProvider
         StandaloneMongodb::class => DatabasePolicy::class,
         StandaloneRedis::class => DatabasePolicy::class,
         StandaloneKeydb::class => DatabasePolicy::class,
+        StandaloneValkey::class => DatabasePolicy::class,
         StandaloneDragonfly::class => DatabasePolicy::class,
         StandaloneClickhouse::class => DatabasePolicy::class,
         StandaloneSqlite::class => DatabasePolicy::class,

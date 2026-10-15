@@ -12,6 +12,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Support\DatabaseOperationReservation;
 use App\Support\ResourceStartActivity;
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -31,7 +32,7 @@ class RestartDatabase
      *                                    that queued this action holds the reservation; this action
      *                                    keeps it during the stop and releases it after the start.
      */
-    public function handle(StandaloneRedis|StandalonePostgresql|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite $database, ?string $reservation = null)
+    public function handle(StandaloneRedis|StandalonePostgresql|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneValkey|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite $database, ?string $reservation = null)
     {
         if ($reservation === null) {
             $reservation = DatabaseOperationReservation::acquire($database->uuid);
@@ -72,7 +73,7 @@ class RestartDatabase
         }
     }
 
-    public function asJob(StandaloneRedis|StandalonePostgresql|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite $database, ?string $reservation = null): mixed
+    public function asJob(StandaloneRedis|StandalonePostgresql|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneValkey|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite $database, ?string $reservation = null): mixed
     {
         return StartDatabase::runQueued($database, 'Database restart failed.', fn (): mixed => $this->handle($database, $reservation));
     }

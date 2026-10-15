@@ -6,6 +6,7 @@ use App\Traits\Auditable;
 use App\Traits\ClearsGlobalSearchCache;
 use App\Traits\HasSafeStringAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Support\Collection;
 use OpenApi\Attributes as OA;
 
@@ -120,6 +121,11 @@ class Project extends BaseModel
         return $this->hasManyThrough(StandaloneKeydb::class, Environment::class);
     }
 
+    public function valkeys(): HasManyThrough
+    {
+        return $this->hasManyThrough(StandaloneValkey::class, Environment::class);
+    }
+
     public function dragonflies()
     {
         return $this->hasManyThrough(StandaloneDragonfly::class, Environment::class);
@@ -157,6 +163,7 @@ class Project extends BaseModel
             $this->postgresqls()->count() == 0 &&
             $this->mysqls()->count() == 0 &&
             $this->keydbs()->count() == 0 &&
+            $this->valkeys()->count() == 0 &&
             $this->dragonflies()->count() == 0 &&
             $this->clickhouses()->count() == 0 &&
             $this->mariadbs()->count() == 0 &&
@@ -173,6 +180,7 @@ class Project extends BaseModel
             ->concat($this->mysqls()->with($with)->get())
             ->concat($this->mariadbs()->with($with)->get())
             ->concat($this->keydbs()->with($with)->get())
+            ->concat($this->valkeys()->with($with)->get())
             ->concat($this->dragonflies()->with($with)->get())
             ->concat($this->clickhouses()->with($with)->get())
             ->concat($this->sqlites()->with($with)->get());

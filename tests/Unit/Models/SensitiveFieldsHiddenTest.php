@@ -27,6 +27,7 @@ use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
+use App\Models\StandaloneValkey;
 use App\Models\TelegramNotificationSettings;
 use App\Models\WebhookNotificationSettings;
 
@@ -276,6 +277,16 @@ describe('Sensitive model fields are hidden by default', function () {
 
         expect($hidden)->toContain(
             'keydb_password',
+            'internal_db_url',
+            'external_db_url',
+        );
+    });
+
+    test('StandaloneValkey hides password and db urls', function () {
+        $hidden = (new StandaloneValkey)->getHidden();
+
+        expect($hidden)->toContain(
+            'valkey_password',
             'internal_db_url',
             'external_db_url',
         );

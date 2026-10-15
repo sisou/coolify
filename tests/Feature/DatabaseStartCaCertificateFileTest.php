@@ -7,6 +7,7 @@ use App\Actions\Database\StartMongodb;
 use App\Actions\Database\StartMysql;
 use App\Actions\Database\StartPostgresql;
 use App\Actions\Database\StartRedis;
+use App\Actions\Database\StartValkey;
 use App\Models\Environment;
 use App\Models\InstanceSettings;
 use App\Models\PrivateKey;
@@ -56,6 +57,7 @@ dataset('ssl-database-start-actions', [
     'mongodb' => ['create_standalone_mongodb', StartMongodb::class],
     'redis' => ['create_standalone_redis', StartRedis::class],
     'keydb' => ['create_standalone_keydb', StartKeydb::class],
+    'valkey' => ['create_standalone_valkey', StartValkey::class],
     'dragonfly' => ['create_standalone_dragonfly', StartDragonfly::class],
 ]);
 

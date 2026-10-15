@@ -14,6 +14,7 @@
             $resource->getMorphClass() == 'App\Models\StandaloneRedis' ||
             $resource->getMorphClass() == 'App\Models\StandaloneMariadb' ||
             $resource->getMorphClass() == 'App\Models\StandaloneKeydb' ||
+            $resource->getMorphClass() == 'App\Models\StandaloneValkey' ||
             $resource->getMorphClass() == 'App\Models\StandaloneDragonfly' ||
             $resource->getMorphClass() == 'App\Models\StandaloneClickhouse' ||
             $resource->getMorphClass() == 'App\Models\StandaloneMongodb' ||

@@ -11,6 +11,7 @@ use App\Actions\Database\StartMysql;
 use App\Actions\Database\StartPostgresql;
 use App\Actions\Database\StartRedis;
 use App\Actions\Database\StartSqlite;
+use App\Actions\Database\StartValkey;
 use App\Enums\ProcessStatus;
 use App\Events\DatabaseStatusChanged;
 use App\Exceptions\DatabaseStartException;
@@ -24,6 +25,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Services\ResourceStatusRefresher;
 use App\Support\ResourceStartActivity;
 use Illuminate\Bus\Queueable;
@@ -123,6 +125,7 @@ class DatabaseStartJob implements ShouldBeEncrypted, ShouldQueue
             StandaloneMysql::class => StartMysql::run($database, $activity),
             StandaloneMariadb::class => StartMariadb::run($database, $activity),
             StandaloneKeydb::class => StartKeydb::run($database, $activity),
+            StandaloneValkey::class => StartValkey::run($database, $activity),
             StandaloneDragonfly::class => StartDragonfly::run($database, $activity),
             StandaloneClickhouse::class => StartClickhouse::run($database, $activity),
             StandaloneSqlite::class => StartSqlite::run($database, $activity),

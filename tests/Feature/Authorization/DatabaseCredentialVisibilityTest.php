@@ -16,6 +16,8 @@ use App\Livewire\Project\Database\Postgresql\General as PostgresqlGeneral;
 use App\Livewire\Project\Database\Postgresql\StatusInfo as PostgresqlStatusInfo;
 use App\Livewire\Project\Database\Redis\General as RedisGeneral;
 use App\Livewire\Project\Database\Redis\StatusInfo as RedisStatusInfo;
+use App\Livewire\Project\Database\Valkey\General as ValkeyGeneral;
+use App\Livewire\Project\Database\Valkey\StatusInfo as ValkeyStatusInfo;
 use App\Models\Environment;
 use App\Models\InstanceSettings;
 use App\Models\Project;
@@ -50,6 +52,7 @@ dataset('database-credential-components', [
     'mongodb' => ['create_standalone_mongodb', MongodbGeneral::class, MongodbStatusInfo::class, ['mongo_initdb_root_password' => 'stored-db-credential'], ['mongoInitdbRootPassword']],
     'redis' => ['create_standalone_redis', RedisGeneral::class, RedisStatusInfo::class, ['redis_password' => 'stored-db-credential'], ['redisPassword']],
     'keydb' => ['create_standalone_keydb', KeydbGeneral::class, KeydbStatusInfo::class, ['keydb_password' => 'stored-db-credential'], ['keydbPassword']],
+    'valkey' => ['create_standalone_valkey', ValkeyGeneral::class, ValkeyStatusInfo::class, ['valkey_password' => 'stored-db-credential'], ['valkeyPassword']],
     'dragonfly' => ['create_standalone_dragonfly', DragonflyGeneral::class, DragonflyStatusInfo::class, ['dragonfly_password' => 'stored-db-credential'], ['dragonflyPassword']],
     'clickhouse' => ['create_standalone_clickhouse', ClickhouseGeneral::class, ClickhouseStatusInfo::class, ['clickhouse_admin_password' => 'stored-db-credential'], ['clickhouseAdminPassword']],
 ]);

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Support\ValidationPatterns;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class SwarmDocker extends BaseModel
 {
@@ -39,6 +40,11 @@ class SwarmDocker extends BaseModel
     public function keydbs()
     {
         return $this->morphMany(StandaloneKeydb::class, 'destination');
+    }
+
+    public function valkeys(): MorphMany
+    {
+        return $this->morphMany(StandaloneValkey::class, 'destination');
     }
 
     public function dragonflies()
@@ -121,11 +127,12 @@ class SwarmDocker extends BaseModel
         $mysqls = $this->mysqls;
         $mariadbs = $this->mariadbs;
         $keydbs = $this->keydbs;
+        $valkeys = $this->valkeys;
         $dragonflies = $this->dragonflies;
         $clickhouses = $this->clickhouses;
         $sqlites = $this->sqlites;
 
-        return $postgresqls->concat($redis)->concat($mongodbs)->concat($mysqls)->concat($mariadbs)->concat($keydbs)->concat($dragonflies)->concat($clickhouses)->concat($sqlites);
+        return $postgresqls->concat($redis)->concat($mongodbs)->concat($mysqls)->concat($mariadbs)->concat($keydbs)->concat($valkeys)->concat($dragonflies)->concat($clickhouses)->concat($sqlites);
     }
 
     public function attachedTo()

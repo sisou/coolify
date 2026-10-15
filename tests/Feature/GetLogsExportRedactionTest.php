@@ -19,6 +19,7 @@ use App\Models\StandaloneMariadb;
 use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
+use App\Models\StandaloneValkey;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -216,5 +217,6 @@ it('redacts stored database credentials even without environment variables', fun
     'mongodb' => [StandaloneMongodb::class, ['mongo_initdb_root_password' => 'xy']],
     'clickhouse' => [StandaloneClickhouse::class, ['clickhouse_admin_password' => 'xy']],
     'keydb' => [StandaloneKeydb::class, ['keydb_password' => 'xy']],
+    'valkey' => [StandaloneValkey::class, ['valkey_password' => 'xy']],
     'dragonfly' => [StandaloneDragonfly::class, ['dragonfly_password' => 'xy']],
 ]);
